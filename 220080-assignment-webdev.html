@@ -1,0 +1,979 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Personal Portfolio</title>
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f4f4f4;
+        }
+
+        /* Navigation bar */
+        nav {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        nav .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+
+        nav a:hover {
+            opacity: 0.8;
+        }
+
+        /* Hero section */
+        .hero {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            color: white;
+            padding: 8rem 2rem 4rem;
+            text-align: center;
+            margin-top: 60px;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .profile-photo {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            border: 5px solid white;
+            margin-bottom: 2rem;
+            object-fit: cover;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: white;
+            color: #1a1a1a;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Section styles */
+        section {
+            padding: 4rem 2rem;
+            background: white;
+            margin: 2rem auto;
+            max-width: 1200px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            color: #1a1a1a;
+        }
+
+        /* About section */
+        .about-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .about-card {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 10px;
+            border-left: 4px solid #1a1a1a;
+        }
+
+        .about-card h3 {
+            color: #1a1a1a;
+            margin-bottom: 1rem;
+        }
+
+        .about-card ul {
+            list-style-position: inside;
+            color: #555;
+        }
+
+        .about-card li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Portfolio section */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+        }
+
+        .project-content {
+            padding: 1.5rem;
+        }
+
+        .project-content h3 {
+            color: #1a1a1a;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+
+        .tag {
+            background: #e9ecef;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: #555;
+        }
+
+        /* Notebook Section Styles */
+        .notebook-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .notebook-info {
+            background: #fff3cd;
+            border: 2px solid #ffc107;
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 2rem;
+            color: #856404;
+            text-align: center;
+        }
+
+        .note-input-area {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            border: 2px solid #e9ecef;
+        }
+
+        .note-input-area h3 {
+            color: #1a1a1a;
+            margin-bottom: 1rem;
+        }
+
+        #noteInput {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 1rem;
+            resize: vertical;
+            min-height: 120px;
+            transition: border-color 0.3s;
+        }
+
+        #noteInput:focus {
+            outline: none;
+            border-color: #1a1a1a;
+        }
+
+        #addNoteBtn {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            color: white;
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 1rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        #addNoteBtn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+        }
+
+        .notes-display-area {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            border: 2px solid #e9ecef;
+            min-height: 200px;
+        }
+
+        .notes-display-area h3 {
+            color: #1a1a1a;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #e9ecef;
+        }
+
+        #notesContainer {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .note-item {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid #1a1a1a;
+            animation: slideIn 0.3s ease;
+            position: relative;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .note-item p {
+            color: #333;
+            line-height: 1.6;
+            word-wrap: break-word;
+        }
+
+        .note-item .note-timestamp {
+            font-size: 0.85rem;
+            color: #666;
+            margin-top: 0.5rem;
+            font-style: italic;
+        }
+
+        .empty-notes-message {
+            text-align: center;
+            color: #999;
+            padding: 3rem;
+            font-size: 1.1rem;
+        }
+
+        .notification {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            background: #f8d7da;
+            color: #721c24;
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            border: 2px solid #f5c6cb;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            z-index: 2000;
+            animation: slideInRight 0.3s ease, fadeOut 0.3s ease 2.7s;
+            display: none;
+        }
+
+        .notification.show {
+            display: block;
+        }
+
+        @keyframes slideInRight {
+            from {
+                transform: translateX(400px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeOut {
+            from {
+                opacity: 1;
+            }
+            to {
+                opacity: 0;
+            }
+        }
+
+        /* Contact Section */
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: start;
+        }
+
+        .contact-info {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 10px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-icon {
+            width: 40px;
+            height: 40px;
+            background: #1a1a1a;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+            color: #555;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            padding: 0.8rem;
+            border: 2px solid #e9ecef;
+            border-radius: 5px;
+            font-family: inherit;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #1a1a1a;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .submit-button {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .submit-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+        }
+
+        .form-message {
+            padding: 1rem;
+            border-radius: 5px;
+            margin-top: 1rem;
+            display: none;
+        }
+
+        .form-message.success {
+            background: #d4edda;
+            color: #155724;
+            display: block;
+        }
+
+        .form-message.error {
+            background: #f8d7da;
+            color: #721c24;
+            display: block;
+        }
+
+        /* Footer */
+        footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            nav ul {
+                gap: 1rem;
+                font-size: 0.9rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .contact-content {
+                grid-template-columns: 1fr;
+            }
+
+            section {
+                padding: 3rem 1.5rem;
+            }
+
+            .notification {
+                right: 10px;
+                left: 10px;
+                top: 80px;
+            }
+        }
+
+        /* Smooth scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+    <!-- Notification for empty note -->
+    <div id="notification" class="notification">
+        ⚠️ Please type your note before clicking "Add Note"!
+    </div>
+
+    <!-- Navigation menu -->
+    <nav>
+        <div class="container">
+            <div class="logo">Portfolio</div>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#notebook">Notebook</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero section with Introduction -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <!-- Profile photo -->
+            <img src="profile_photo.PNG" alt="Duc Nguyen" class="profile-photo">
+            
+            <!-- Name and brief introduction -->
+            <h1>Nguyen Huynh Duc</h1>
+            <p>Undergraduate student</p>
+            <p>Hello, I'm Duc, a student at Fulbright University Vietnam.</p>
+            <a href="#contact" class="cta-button">Contact me</a>
+        </div>
+    </section>
+
+    <!-- About section -->
+    <section id="about">
+        <h2>About Me</h2>
+        <div class="about-content">
+            <!-- Background card -->
+            <div class="about-card">
+                <h3>Background</h3>
+                <p>I am a senior student at Fulbright University Vietnam majoring in Computer Science, expecting to graduate in 2026.<br> My main focus is on Algorithm Design and Analysis.</p>
+            </div>
+
+            <!-- Education card -->
+            <div class="about-card">
+                <h3>Education</h3>
+                    <!-- <strong>Primary School Completion Certificate</strong><br>Phung Hung school, Class of 2014<br><br>
+                    <strong>Secondary School Diploma</strong><br>Chu Van An school, Class of 2018<br><br>
+                    <strong>High School Diploma in Science</strong><br>Nguyen Thi Minh Khai High School, Class of 2021<br><br> -->
+                    <strong>Bachelor of Science in Computer Science</strong> (expected graduation: 2026)<br>Fulbright University Vietnam, Class of 2026
+            </div>
+
+            <!-- Skills card -->
+            <div class="about-card">
+                <h3>Skills</h3>
+                <ul>
+                   Cognition and behavior
+                </ul>
+            </div>
+
+            <!-- Hobbies card -->
+            <div class="about-card">
+                <h3>Hobbies</h3>
+                I enjoy every living moment.
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio section -->
+    <section id="portfolio">
+        <h2>Portfolio</h2>
+        <p style="text-align: center; color: #666; margin-bottom: 2rem;">Here are some of my recent projects</p>
+        
+        <div class="portfolio-grid">
+            <!-- Project 1 -->
+            <div class="project-card">
+                <img src = "target_system.PNG" alt="Targeting System" class = "project-image">
+                <div class="project-content">
+                    <h3>Targeting system</h3>
+                    <p> a simple real-time system that combines object detection, tracking and depth estimation using a stereo camera setup</p>
+                    <div class="project-tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">C++</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 2 -->
+            <div class="project-card">
+                <img src = "robot.png" alt="ye" class = "project-image">
+                <div class="project-content">
+                    <h3>Tobot</h3>
+                    <p>an autonomous vehicle capable of line tracking and object detection</p>
+                    <div class="project-tags">
+                        <span class="tag">C++</span>
+                        <span class="tag">Python</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 3 -->
+            <div class="project-card">
+                <img src = "KeyworkMST.png" alt="KeywordMST" class = "project-image">
+                <div class="project-content">
+                    <h3>KeywordMST</h3>
+                    <p>An application of Kruskal's minimum spanning tree algorithm to search for saved posts/articles with relevant keywords</p>
+                    <div class="project-tags">
+                        <span class="tag">Java</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Notebook section -->
+    <section id="notebook">
+        <h2>Notebook</h2>
+        
+        <div class="notebook-container">
+            <!-- Info banner -->
+            <div class="notebook-info">
+                <strong>Note:</strong> Your notes are saved only for this browser session. Refreshing the page will clear all notes.
+            </div>
+
+            <!-- Note input area -->
+            <div class="note-input-area">
+                <h3>Create a New Note</h3>
+                <textarea 
+                    id="noteInput" 
+                    placeholder="Type your note here..."
+                    aria-label="Note input area"
+                ></textarea>
+                <button id="addNoteBtn">Add Note</button>
+            </div>
+
+            <!-- Notes display area -->
+            <div class="notes-display-area">
+                <h3>My Notes</h3>
+                <div id="notesContainer">
+                    <div class="empty-notes-message">
+                        No notes yet. Start by adding your first note above!
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact section -->
+    <section id="contact">
+        <h2>Contact</h2>
+        <div class="contact-content">
+            <!-- Contact information -->
+            <div class="contact-info">
+                <h3 style="color: #1a1a1a; margin-bottom: 1.5rem;">Contact Information</h3>
+                
+                <div class="contact-item">
+                    <div class="contact-icon">📧</div>
+                    <div>
+                        <strong>Email</strong>
+                        <p>duc.nguyen.220080@student.fulbright.edu.vn</p>
+                    </div>
+                </div>
+
+                <div class="contact-item">
+                    <div class="contact-icon">📍</div>
+                    <div>
+                        <strong>Location</strong>
+                        <p>Ho Chi Minh City, Vietnam</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact form -->
+            <div>
+                <h3 style="color: #1a1a1a; margin-bottom: 1.5rem;">Drop me a message</h3>
+                <form id="contactForm" class="contact-form">
+                    <div class="form-group">
+                        <label for="name">Your Name *</label>
+                        <input type="text" id="name" name="name" required placeholder="Cristiano Ronaldo">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Your Email *</label>
+                        <input type="email" id="email" name="email" required placeholder="ronaldo@example.com">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="subject">Subject *</label>
+                        <input type="text" id="subject" name="subject" required placeholder="Asking to be my girlfriend">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Message *</label>
+                        <textarea id="message" name="message" required placeholder="I would like to ask you out on a date..."></textarea>
+                    </div>
+
+                    <button type="submit" class="submit-button">Send Message</button>
+
+                    <!-- Form response message -->
+                    <div id="formMessage" class="form-message"></div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Nguyen Huynh Duc.</p>
+        <p>Designed and built with stress</p>
+    </footer>
+
+    <!-- JavaScript for Form Handling and Interactivity -->
+    <script>
+        // Notebook Functionality
+        // Function to display notification
+        function showNotification() {
+            const notification = document.getElementById('notification');
+            notification.classList.add('show');
+            
+            // Hide notification after 3 seconds
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 3000);
+        }
+
+        // Function to format timestamp
+        function formatTimestamp() {
+            const now = new Date();
+            const options = { 
+                year: 'numeric', 
+                month: 'short', 
+                day: 'numeric', 
+                hour: '2-digit', 
+                minute: '2-digit' 
+            };
+            return now.toLocaleDateString('en-US', options);
+        }
+
+        // Function to create a note element
+        function createNoteElement(noteText) {
+            const noteDiv = document.createElement('div');
+            noteDiv.className = 'note-item';
+            
+            const noteContent = document.createElement('p');
+            noteContent.textContent = noteText;
+            
+            const timestamp = document.createElement('div');
+            timestamp.className = 'note-timestamp';
+            timestamp.textContent = formatTimestamp();
+            
+            noteDiv.appendChild(noteContent);
+            noteDiv.appendChild(timestamp);
+            
+            return noteDiv;
+        }
+
+        // Function to update the notes display
+        function updateNotesDisplay() {
+            const notesContainer = document.getElementById('notesContainer');
+            const notes = notesContainer.querySelectorAll('.note-item');
+            
+            // Show or hide empty message
+            const emptyMessage = notesContainer.querySelector('.empty-notes-message');
+            if (notes.length > 0) {
+                if (emptyMessage) {
+                    emptyMessage.style.display = 'none';
+                }
+            } else {
+                if (emptyMessage) {
+                    emptyMessage.style.display = 'block';
+                }
+            }
+        }
+
+        // Add Note Button Event Listener
+        document.getElementById('addNoteBtn').addEventListener('click', function() {
+            const noteInput = document.getElementById('noteInput');
+            const noteText = noteInput.value.trim();
+            
+            // Check if input is empty
+            if (noteText === '') {
+                showNotification();
+                return;
+            }
+            
+            // Create new note element
+            const noteElement = createNoteElement(noteText);
+            
+            // Get notes container
+            const notesContainer = document.getElementById('notesContainer');
+            
+            // Remove empty message if it exists
+            const emptyMessage = notesContainer.querySelector('.empty-notes-message');
+            if (emptyMessage) {
+                emptyMessage.remove();
+            }
+            
+            // Add note to the container (prepend to show newest first)
+            notesContainer.insertBefore(noteElement, notesContainer.firstChild);
+            
+            // Clear input field
+            noteInput.value = '';
+            
+            // Update display
+            updateNotesDisplay();
+            
+            // Focus back on input for easy note entry
+            noteInput.focus();
+        });
+
+        // Allow Enter key to add note (Ctrl+Enter for new line in textarea)
+        document.getElementById('noteInput').addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' && !e.ctrlKey && !e.shiftKey) {
+                e.preventDefault();
+                document.getElementById('addNoteBtn').click();
+            }
+        });
+
+        // Contact Form Functionality 
+        // Contact Form Submission Handler
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault(); // Prevent default form submission
+            
+            // Get form values
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value;
+            
+            // Get message display element
+            const formMessage = document.getElementById('formMessage');
+            
+            // Basic validation
+            if (name.trim() === '' || email.trim() === '' || subject.trim() === '' || message.trim() === '') {
+                formMessage.className = 'form-message error';
+                formMessage.textContent = 'Please fill in all required fields.';
+                return;
+            }
+            
+            // Email validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                formMessage.className = 'form-message error';
+                formMessage.textContent = 'Please re-enter a valid email address.';
+                return;
+            }
+            
+            // Simulate form submission (in real application, this would be sent to a server)
+            console.log('Form Submitted:', {
+                name: name,
+                email: email,
+                subject: subject,
+                message: message
+            });
+            
+            // Show success message
+            formMessage.className = 'form-message success';
+            formMessage.textContent = 'Thank you for your message! I will get back to you soon.';
+            
+            // Reset form
+            this.reset();
+            
+            // Hide message after 5 seconds
+            setTimeout(function() {
+                formMessage.style.display = 'none';
+            }, 5000);
+        });
+
+        // Navigation and scroll animations
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add active class to navigation on scroll
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('nav a');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= (sectionTop - 100)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.style.opacity = '1';
+                if (link.getAttribute('href').slice(1) === current) {
+                    link.style.opacity = '0.7';
+                }
+            });
+        });
+
+        // Add animation on scroll for project cards
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all project cards
+        document.querySelectorAll('.project-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(card);
+        });
+
+        // Form input animations
+        const formInputs = document.querySelectorAll('.form-group input, .form-group textarea');
+        formInputs.forEach(input => {
+            input.addEventListener('focus', function() {
+                this.parentElement.querySelector('label').style.color = '#1a1a1a';
+            });
+            
+            input.addEventListener('blur', function() {
+                this.parentElement.querySelector('label').style.color = '#555';
+            });
+        });
+
+        // Console welcome message
+        console.log('%c Welcome to my portfolio! ', 'background: #1a1a1a; color: white; font-size: 20px; padding: 10px;');
+        console.log('Interested in the code? Feel free to reach out!');
+    </script>
+</body>
+</html>
