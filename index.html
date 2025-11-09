@@ -15,59 +15,167 @@
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
-            color: #333;
-            background-color: #f4f4f4;
+            color: #f4f4f4;
+            background-color: #1a1a1a;
+            margin-left: 250px;
         }
 
-        /* Navigation bar */
+        /* Navigation Bar - Vertical Sidebar */
         nav {
-            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
-            color: white;
-            padding: 1rem 0;
+            background: linear-gradient(135deg, #ffffff 0%, #f5f5f5 100%);
+            color: #1a1a1a;
+            padding: 2rem 1rem;
             position: fixed;
-            width: 100%;
+            width: 250px;
+            height: 100vh;
             top: 0;
+            left: 0;
             z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
         }
 
         nav .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
             display: flex;
+            flex-direction: column;
+            height: 100%;
+            padding: 0;
             justify-content: space-between;
-            align-items: center;
         }
 
         nav .logo {
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             font-weight: bold;
+            margin-bottom: 3rem;
+            text-align: center;
+            padding-bottom: 2rem;
+            border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+            color: #1a1a1a;
+        }
+
+        nav .nav-menu {
+            flex-grow: 1;
         }
 
         nav ul {
             display: flex;
+            flex-direction: column;
             list-style: none;
-            gap: 2rem;
+            gap: 0;
+        }
+
+        nav ul li {
+            width: 100%;
         }
 
         nav a {
-            color: white;
+            color: #1a1a1a;
             text-decoration: none;
-            transition: opacity 0.3s;
+            transition: background 0.3s, padding-left 0.3s;
+            display: block;
+            padding: 1rem 1.5rem;
+            border-radius: 5px;
         }
 
         nav a:hover {
-            opacity: 0.8;
+            background: rgba(0, 0, 0, 0.1);
+            padding-left: 2rem;
         }
 
-        /* Hero section */
+        /* Animated Button at Bottom of Nav */
+        .nav-bottom-btn {
+            margin-top: auto;
+            padding: 1rem;
+        }
+
+        .animated-btn {
+            background: #ffffff;
+            color: #1a1a1a;
+            border: 2px solid #1a1a1a;
+            padding: 1rem 1.5rem;
+            width: 100%;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        .animated-btn:hover {
+            background: #1a1a1a;
+            color: #ffffff;
+        }
+
+        .animated-btn:active {
+            background: #000000;
+            color: #ffffff;
+        }
+
+        /* Cheems bonk animation container */
+        .bonk-container {
+            position: fixed;
+            bottom: 90px;
+            left: 20px;
+            width: 210px;
+            height: 250px;
+            pointer-events: none;
+            z-index: 10000;
+            display: block;
+        }
+
+        /* Main bonk image/GIF */
+        .bonk-image {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            position: absolute;
+            top: 0;
+            left: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        /* Frame states */
+        .bonk-frame-before {
+            opacity: 1;
+            z-index: 1;
+        }
+
+        .bonk-frame-after {
+            opacity: 0;
+            z-index: 2;
+        }
+
+        /* When bonking happens - fade to second image */
+        .bonk-container.bonking .bonk-frame-after {
+            opacity: 1;
+            animation: impactShake 0.3s ease;
+        }
+
+        @keyframes impactShake {
+            0% {
+                transform: translateX(0);
+            }
+            25% {
+                transform: translateX(-10px) scale(0.95);
+            }
+            50% {
+                transform: translateX(10px) scale(0.9);
+            }
+            75% {
+                transform: translateX(-5px) scale(0.95);
+            }
+            100% {
+                transform: translateX(0) scale(1);
+            }
+        }
+
+        /* Hero Section */
         .hero {
-            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
             color: white;
-            padding: 8rem 2rem 4rem;
+            padding: 6rem 2rem 4rem;
             text-align: center;
-            margin-top: 60px;
         }
 
         .hero-content {
@@ -118,24 +226,24 @@
             padding: 0 2rem;
         }
 
-        /* Section styles */
+        /* Section Styles */
         section {
             padding: 4rem 2rem;
-            background: white;
+            background: #2d2d2d;
             margin: 2rem auto;
             max-width: 1200px;
             border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
         }
 
         section h2 {
             font-size: 2.5rem;
             margin-bottom: 2rem;
             text-align: center;
-            color: #1a1a1a;
+            color: #ffffff;
         }
 
-        /* About section */
+        /* About Section */
         .about-content {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -143,27 +251,27 @@
         }
 
         .about-card {
-            background: #f8f9fa;
+            background: #1a1a1a;
             padding: 2rem;
             border-radius: 10px;
-            border-left: 4px solid #1a1a1a;
+            border-top: 2px solid #ffffff;
         }
 
         .about-card h3 {
-            color: #1a1a1a;
+            color: #ffffff;
             margin-bottom: 1rem;
         }
 
         .about-card ul {
             list-style-position: inside;
-            color: #555;
+            color: #cccccc;
         }
 
         .about-card li {
             margin-bottom: 0.5rem;
         }
 
-        /* Portfolio section */
+        /* Portfolio Section */
         .portfolio-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -172,27 +280,22 @@
         }
 
         .project-card {
-            background: white;
+            background: #1a1a1a;
             border-radius: 10px;
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
             transition: transform 0.3s, box-shadow 0.3s;
         }
 
         .project-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
         }
 
         .project-image {
             width: 100%;
             height: 200px;
-            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 3rem;
+            object-fit: cover;
         }
 
         .project-content {
@@ -200,7 +303,7 @@
         }
 
         .project-content h3 {
-            color: #1a1a1a;
+            color: #ffffff;
             margin-bottom: 0.5rem;
         }
 
@@ -212,11 +315,11 @@
         }
 
         .tag {
-            background: #e9ecef;
+            background: #0a0a0a;
             padding: 0.3rem 0.8rem;
             border-radius: 20px;
             font-size: 0.85rem;
-            color: #555;
+            color: #cccccc;
         }
 
         /* Notebook Section Styles */
@@ -225,161 +328,120 @@
             margin: 0 auto;
         }
 
-        .notebook-info {
-            background: #fff3cd;
-            border: 2px solid #ffc107;
-            border-radius: 8px;
-            padding: 1rem;
-            margin-bottom: 2rem;
-            color: #856404;
-            text-align: center;
-        }
-
-        .note-input-area {
-            background: #f8f9fa;
+        .notebook-input-area {
+            background: #1a1a1a;
             padding: 2rem;
             border-radius: 10px;
             margin-bottom: 2rem;
-            border: 2px solid #e9ecef;
         }
 
-        .note-input-area h3 {
-            color: #1a1a1a;
+        .notebook-input-area h3 {
+            color: #ffffff;
             margin-bottom: 1rem;
         }
 
         #noteInput {
             width: 100%;
+            min-height: 120px;
             padding: 1rem;
-            border: 2px solid #e9ecef;
-            border-radius: 8px;
+            border: 2px solid #444;
+            border-radius: 5px;
             font-family: inherit;
             font-size: 1rem;
             resize: vertical;
-            min-height: 120px;
             transition: border-color 0.3s;
+            margin-bottom: 1rem;
+            background: #0a0a0a;
+            color: #ffffff;
         }
 
         #noteInput:focus {
             outline: none;
-            border-color: #1a1a1a;
+            border-color: #ffffff;
         }
 
-        #addNoteBtn {
-            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
-            color: white;
+        .add-note-btn {
+            background: linear-gradient(135deg, #ffffff 0%, #f5f5f5 100%);
+            color: #1a1a1a;
             padding: 0.8rem 2rem;
             border: none;
             border-radius: 50px;
             font-size: 1rem;
             font-weight: bold;
             cursor: pointer;
-            margin-top: 1rem;
             transition: transform 0.3s, box-shadow 0.3s;
         }
 
-        #addNoteBtn:hover {
+        .add-note-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
-        }
-
-        .notes-display-area {
-            background: white;
-            padding: 2rem;
-            border-radius: 10px;
-            border: 2px solid #e9ecef;
-            min-height: 200px;
-        }
-
-        .notes-display-area h3 {
-            color: #1a1a1a;
-            margin-bottom: 1.5rem;
-            padding-bottom: 1rem;
-            border-bottom: 2px solid #e9ecef;
-        }
-
-        #notesContainer {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        .note-item {
-            background: #f8f9fa;
-            padding: 1.5rem;
-            border-radius: 8px;
-            border-left: 4px solid #1a1a1a;
-            animation: slideIn 0.3s ease;
-            position: relative;
-        }
-
-        @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateX(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        .note-item p {
-            color: #333;
-            line-height: 1.6;
-            word-wrap: break-word;
-        }
-
-        .note-item .note-timestamp {
-            font-size: 0.85rem;
-            color: #666;
-            margin-top: 0.5rem;
-            font-style: italic;
-        }
-
-        .empty-notes-message {
-            text-align: center;
-            color: #999;
-            padding: 3rem;
-            font-size: 1.1rem;
+            box-shadow: 0 5px 15px rgba(255, 255, 255, 0.4);
         }
 
         .notification {
-            position: fixed;
-            top: 100px;
-            right: 20px;
-            background: #f8d7da;
-            color: #721c24;
-            padding: 1rem 1.5rem;
-            border-radius: 8px;
-            border: 2px solid #f5c6cb;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-            z-index: 2000;
-            animation: slideInRight 0.3s ease, fadeOut 0.3s ease 2.7s;
+            padding: 1rem;
+            border-radius: 5px;
+            margin-top: 1rem;
             display: none;
+            background: #3d1f1f;
+            color: #ffcccc;
+            border: 1px solid #6b2c2c;
         }
 
         .notification.show {
             display: block;
         }
 
-        @keyframes slideInRight {
-            from {
-                transform: translateX(400px);
-                opacity: 0;
-            }
-            to {
-                transform: translateX(0);
-                opacity: 1;
-            }
+        .notes-display {
+            background: #1a1a1a;
+            padding: 2rem;
+            border-radius: 10px;
+            min-height: 200px;
         }
 
-        @keyframes fadeOut {
+        .notes-display h3 {
+            color: #ffffff;
+            margin-bottom: 1.5rem;
+        }
+
+        .note-item {
+            background: #0a0a0a;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            border-left: 4px solid #ffffff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+            animation: slideIn 0.3s ease;
+        }
+
+        .note-item p {
+            color: #e0e0e0;
+            line-height: 1.6;
+            margin: 0;
+            white-space: pre-wrap;
+        }
+
+        .note-timestamp {
+            font-size: 0.85rem;
+            color: #999;
+            margin-top: 0.5rem;
+            font-style: italic;
+        }
+
+        .no-notes {
+            text-align: center;
+            color: #666;
+            font-style: italic;
+            padding: 2rem;
+        }
+
+        @keyframes slideIn {
             from {
-                opacity: 1;
+                opacity: 0;
+                transform: translateY(-10px);
             }
             to {
-                opacity: 0;
+                opacity: 1;
+                transform: translateY(0);
             }
         }
 
@@ -392,7 +454,7 @@
         }
 
         .contact-info {
-            background: #f8f9fa;
+            background: #1a1a1a;
             padding: 2rem;
             border-radius: 10px;
         }
@@ -407,12 +469,12 @@
         .contact-icon {
             width: 40px;
             height: 40px;
-            background: #1a1a1a;
+            background: #ffffff;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: white;
+            color: #1a1a1a;
             font-size: 1.2rem;
         }
 
@@ -430,22 +492,24 @@
         .form-group label {
             margin-bottom: 0.5rem;
             font-weight: bold;
-            color: #555;
+            color: #cccccc;
         }
 
         .form-group input,
         .form-group textarea {
             padding: 0.8rem;
-            border: 2px solid #e9ecef;
+            border: 2px solid #444;
             border-radius: 5px;
             font-family: inherit;
             transition: border-color 0.3s;
+            background: #0a0a0a;
+            color: #ffffff;
         }
 
         .form-group input:focus,
         .form-group textarea:focus {
             outline: none;
-            border-color: #1a1a1a;
+            border-color: #ffffff;
         }
 
         .form-group textarea {
@@ -454,8 +518,8 @@
         }
 
         .submit-button {
-            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
-            color: white;
+            background: linear-gradient(135deg, #ffffff 0%, #f5f5f5 100%);
+            color: #1a1a1a;
             padding: 1rem 2rem;
             border: none;
             border-radius: 50px;
@@ -467,7 +531,7 @@
 
         .submit-button:hover {
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 5px 15px rgba(255, 255, 255, 0.4);
         }
 
         .form-message {
@@ -478,20 +542,20 @@
         }
 
         .form-message.success {
-            background: #d4edda;
-            color: #155724;
+            background: #1f3d1f;
+            color: #ccffcc;
             display: block;
         }
 
         .form-message.error {
-            background: #f8d7da;
-            color: #721c24;
+            background: #3d1f1f;
+            color: #ffcccc;
             display: block;
         }
 
         /* Footer */
         footer {
-            background: #2c3e50;
+            background: #0a0a0a;
             color: white;
             text-align: center;
             padding: 2rem;
@@ -500,9 +564,50 @@
 
         /* Responsive Design */
         @media (max-width: 768px) {
+            nav {
+                width: 100%;
+                height: auto;
+                position: relative;
+                padding: 1rem;
+            }
+
+            nav .container {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            nav .logo {
+                margin-bottom: 0;
+                padding-bottom: 0;
+                border-bottom: none;
+                font-size: 1.5rem;
+            }
+
+            nav .nav-menu {
+                flex-grow: 0;
+            }
+
             nav ul {
+                flex-direction: row;
                 gap: 1rem;
                 font-size: 0.9rem;
+            }
+
+            nav a {
+                padding: 0.5rem 1rem;
+            }
+
+            nav a:hover {
+                padding-left: 1rem;
+            }
+
+            .nav-bottom-btn {
+                display: none;
+            }
+
+            body {
+                margin-left: 0;
             }
 
             .hero h1 {
@@ -516,47 +621,150 @@
             section {
                 padding: 3rem 1.5rem;
             }
+        }
 
-            .notification {
-                right: 10px;
-                left: 10px;
-                top: 80px;
+        /* Smooth Scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Fireworks Congratulations Effect */
+        .congratulations-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 99999;
+        }
+
+        .congratulations-overlay.active {
+            display: block;
+        }
+
+        .congrats-text {
+            position: absolute;
+            top: 90%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 2rem;
+            font-weight: bold;
+            color: #ff0000;
+            text-shadow: 0 0 20px rgb(0, 0, 0), 0 0 40px rgb(0, 0, 0), 0 0 60px rgb(0, 0, 0);
+            animation: congratsAppear 3s ease forwards;
+            z-index: 100000;
+        }
+
+        @keyframes congratsAppear {
+            0% {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(0.5);
+            }
+            10% {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1.2);
+            }
+            20% {
+                transform: translate(-50%, -50%) scale(1);
+            }
+            80% {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(1.5);
             }
         }
 
-        /* Smooth scroll */
-        html {
-            scroll-behavior: smooth;
+        /* Firework particles */
+        .firework {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            animation: fireworkExplosion 1s ease-out forwards;
+        }
+
+        @keyframes fireworkExplosion {
+            0% {
+                transform: translate(0, 0);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(var(--x), var(--y));
+                opacity: 0;
+            }
+        }
+
+        /* Sparkle effect */
+        .sparkle {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: white;
+            border-radius: 50%;
+            animation: sparkleAnimation 1.5s ease-out forwards;
+        }
+
+        @keyframes sparkleAnimation {
+            0% {
+                transform: scale(0) rotate(0deg);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1) rotate(180deg);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(0) rotate(360deg);
+                opacity: 0;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Notification for empty note -->
-    <div id="notification" class="notification">
-        ⚠️ Please type your note before clicking "Add Note"!
+    <!-- Fireworks Congratulations Effect -->
+    <div class="congratulations-overlay" id="congratsOverlay">
+        <div class="congrats-text" id="congratsText">🎉 Chúc mừng T1 đã có chiếc lồng đèn thứ 6 🎉</div>
     </div>
 
-    <!-- Navigation menu -->
+    <!-- Navigation Menu -->
     <nav>
         <div class="container">
             <div class="logo">Portfolio</div>
-            <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#portfolio">Portfolio</a></li>
-                <li><a href="#notebook">Notebook</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
+            <div class="nav-menu">
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#portfolio">Portfolio</a></li>
+                    <li><a href="#notebook">Notebook</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="nav-bottom-btn">
+                <button class="animated-btn" id="animatedBtn">Click here to reduce stress</button>
+            </div>
         </div>
     </nav>
 
-    <!-- Hero section with Introduction -->
+    <!-- Cheems Bonk Animation Container -->
+    <!-- Two-frame animation: before bonk and after bonk -->
+    <div class="bonk-container" id="bonkContainer">
+        <!-- Frame 1: Before bonk (Cheems ready to bonk) -->
+        <img src="img1.png" alt="Before Bonk" class="bonk-image bonk-frame-before" id="frameBefore">
+        <!-- Frame 2: After bonk (Cheems getting bonked) -->
+        <img src="img2.png" alt="After Bonk" class="bonk-image bonk-frame-after" id="frameAfter">
+    </div>
+
+    <!-- Hero Section with Introduction -->
     <section id="home" class="hero">
         <div class="hero-content">
-            <!-- Profile photo -->
+            <!-- Professional Photo -->
             <img src="profile_photo.PNG" alt="Duc Nguyen" class="profile-photo">
             
-            <!-- Name and brief introduction -->
+            <!-- Name and Brief Introduction -->
             <h1>Nguyen Huynh Duc</h1>
             <p>Undergraduate student</p>
             <p>Hello, I'm Duc, a student at Fulbright University Vietnam.</p>
@@ -564,34 +772,31 @@
         </div>
     </section>
 
-    <!-- About section -->
+    <!-- About Section with Background, Education, Skills, Hobbies -->
     <section id="about">
         <h2>About Me</h2>
         <div class="about-content">
-            <!-- Background card -->
+            <!-- Background Card -->
             <div class="about-card">
                 <h3>Background</h3>
-                <p>I am a senior student at Fulbright University Vietnam majoring in Computer Science, expecting to graduate in 2026.<br> My main focus is on Algorithm Design and Analysis.</p>
+                <p>I am a senior student at Fulbright University Vietnam majoring in Computer Science, expecting to graduate in 2026. My main focus is on Algorithm Design and Analysis.</p>
             </div>
 
-            <!-- Education card -->
+            <!-- Education Card -->
             <div class="about-card">
                 <h3>Education</h3>
-                    <!-- <strong>Primary School Completion Certificate</strong><br>Phung Hung school, Class of 2014<br><br>
-                    <strong>Secondary School Diploma</strong><br>Chu Van An school, Class of 2018<br><br>
-                    <strong>High School Diploma in Science</strong><br>Nguyen Thi Minh Khai High School, Class of 2021<br><br> -->
-                    <strong>Bachelor of Science in Computer Science</strong> (expected graduation: 2026)<br>Fulbright University Vietnam, Class of 2026
+                <strong>Bachelor of Science in Computer Science</strong> (expected graduation: 2026)<br>Fulbright University Vietnam, Class of 2026
             </div>
 
-            <!-- Skills card -->
+            <!-- Skills Card -->
             <div class="about-card">
                 <h3>Skills</h3>
                 <ul>
-                   Cognition and behavior
+                    A subset of cognition and behavior.
                 </ul>
             </div>
 
-            <!-- Hobbies card -->
+            <!-- Hobbies Card -->
             <div class="about-card">
                 <h3>Hobbies</h3>
                 I enjoy every living moment.
@@ -599,18 +804,18 @@
         </div>
     </section>
 
-    <!-- Portfolio section -->
+    <!-- Portfolio Section with Projects -->
     <section id="portfolio">
-        <h2>Portfolio</h2>
-        <p style="text-align: center; color: #666; margin-bottom: 2rem;">Here are some of my recent projects at FUV</p>
+        <h2>My Portfolio</h2>
+        <p style="text-align: center; color: #666; margin-bottom: 2rem;">Here are some of my fun projects at FUV</p>
         
         <div class="portfolio-grid">
             <!-- Project 1 -->
             <div class="project-card">
-                <img src = "target_system.PNG" alt="Targeting System" class = "project-image">
+                <img src="target_system.PNG" alt="Targeting System" class="project-image">
                 <div class="project-content">
                     <h3>Targeting system</h3>
-                    <p> a simple real-time system that combines object detection, tracking and depth estimation using a stereo camera setup</p>
+                    <p>a simple real-time system that combines object detection, tracking and depth estimation using a stereo camera setup</p>
                     <div class="project-tags">
                         <span class="tag">Python</span>
                         <span class="tag">C++</span>
@@ -620,7 +825,7 @@
 
             <!-- Project 2 -->
             <div class="project-card">
-                <img src = "robot.png" alt="ye" class = "project-image">
+                <img src="robot.png" alt="Robot" class="project-image">
                 <div class="project-content">
                     <h3>Tobot</h3>
                     <p>an autonomous vehicle capable of line tracking and object detection</p>
@@ -633,10 +838,10 @@
 
             <!-- Project 3 -->
             <div class="project-card">
-                <img src = "KeyworkMST.png" alt="KeywordMST" class = "project-image">
+                <img src="KeyworkMST.png" alt="KeywordMST" class="project-image">
                 <div class="project-content">
                     <h3>KeywordMST</h3>
-                    <p>An application of Kruskal's minimum spanning tree algorithm to search for saved posts/articles with relevant keywords</p>
+                    <p>An application of Kruskal's in graph theory to search for saved articles with relevant keywords</p>
                     <div class="project-tags">
                         <span class="tag">Java</span>
                     </div>
@@ -645,46 +850,37 @@
         </div>
     </section>
 
-    <!-- Notebook section -->
+    <!-- Notebook Section -->
     <section id="notebook">
-        <h2>Notebook</h2>
+        <h2>My Notebook</h2>
+        <p style="text-align: center; color: #666; margin-bottom: 2rem;">Create and view your personal notes (Notes are temporary and will be cleared on page refresh)</p>
         
         <div class="notebook-container">
-            <!-- Info banner -->
-            <div class="notebook-info">
-                <strong>Note:</strong> Your notes are saved only for this browser session. Refreshing the page will clear all notes.
+            <!-- Input Area -->
+            <div class="notebook-input-area">
+                <h3>Write a New Note</h3>
+                <textarea id="noteInput" placeholder="Type your note here..."></textarea>
+                <button class="add-note-btn" id="addNoteBtn">Add Note</button>
+                <div id="notification" class="notification"></div>
             </div>
 
-            <!-- Note input area -->
-            <div class="note-input-area">
-                <h3>Create a New Note</h3>
-                <textarea 
-                    id="noteInput" 
-                    placeholder="Type your note here..."
-                    aria-label="Note input area"
-                ></textarea>
-                <button id="addNoteBtn">Add Note</button>
-            </div>
-
-            <!-- Notes display area -->
-            <div class="notes-display-area">
-                <h3>My Notes</h3>
+            <!-- Notes Display Area -->
+            <div class="notes-display">
+                <h3>Your Notes</h3>
                 <div id="notesContainer">
-                    <div class="empty-notes-message">
-                        No notes yet. Start by adding your first note above!
-                    </div>
+                    <p class="no-notes">No notes yet!</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Contact section -->
+    <!-- Contact Section with Information and Form -->
     <section id="contact">
         <h2>Contact</h2>
         <div class="contact-content">
-            <!-- Contact information -->
+            <!-- Contact Information -->
             <div class="contact-info">
-                <h3 style="color: #1a1a1a; margin-bottom: 1.5rem;">Contact Information</h3>
+                <h3 style="color: #ffffff; margin-bottom: 1.5rem;">Contact Information</h3>
                 
                 <div class="contact-item">
                     <div class="contact-icon">📧</div>
@@ -703,33 +899,33 @@
                 </div>
             </div>
 
-            <!-- Contact form -->
+            <!-- Contact Form -->
             <div>
-                <h3 style="color: #1a1a1a; margin-bottom: 1.5rem;">Drop me a message</h3>
+                <h3 style="color: #ffffff; margin-bottom: 1.5rem;">Drop me a message</h3>
                 <form id="contactForm" class="contact-form">
                     <div class="form-group">
                         <label for="name">Your Name *</label>
-                        <input type="text" id="name" name="name" required placeholder="Cristiano Ronaldo">
+                        <input type="text" id="name" name="name" required placeholder="Nguyen Anh Tuan">
                     </div>
 
                     <div class="form-group">
                         <label for="email">Your Email *</label>
-                        <input type="email" id="email" name="email" required placeholder="ronaldo@example.com">
+                        <input type="email" id="email" name="email" required placeholder="tuanrealmarid@example.com">
                     </div>
 
                     <div class="form-group">
                         <label for="subject">Subject *</label>
-                        <input type="text" id="subject" name="subject" required placeholder="Asking to be my girlfriend">
+                        <input type="text" id="subject" name="subject" required placeholder="Asking to join">
                     </div>
 
                     <div class="form-group">
                         <label for="message">Message *</label>
-                        <textarea id="message" name="message" required placeholder="I would like to ask you out on a date..."></textarea>
+                        <textarea id="message" name="message" required placeholder="SIUuuu"></textarea>
                     </div>
 
                     <button type="submit" class="submit-button">Send Message</button>
-
-                    <!-- Form response message -->
+                    
+                    <!-- Form Response Message -->
                     <div id="formMessage" class="form-message"></div>
                 </form>
             </div>
@@ -738,119 +934,82 @@
 
     <!-- Footer -->
     <footer>
-        <p>&copy; 2025 Nguyen Huynh Duc.</p>
-        <p>Designed and built with stress</p>
+        <p>2025 Nguyen Huynh Duc.</p>
+        <p>Designed and built with stress < 3 </p>
     </footer>
 
-    <!-- JavaScript for Form Handling and Interactivity -->
+    <!-- JavaScript for All Functionality -->
     <script>
-        // Notebook Functionality
-        // Function to display notification
-        function showNotification() {
-            const notification = document.getElementById('notification');
-            notification.classList.add('show');
-            
-            // Hide notification after 3 seconds
-            setTimeout(() => {
-                notification.classList.remove('show');
-            }, 3000);
-        }
+        // ========== NOTEBOOK FUNCTIONALITY ==========
+        
+        // Get DOM elements for notebook
+        const noteInput = document.getElementById('noteInput');
+        const addNoteBtn = document.getElementById('addNoteBtn');
+        const notesContainer = document.getElementById('notesContainer');
+        const notification = document.getElementById('notification');
 
-        // Function to format timestamp
-        function formatTimestamp() {
-            const now = new Date();
-            const options = { 
-                year: 'numeric', 
-                month: 'short', 
-                day: 'numeric', 
-                hour: '2-digit', 
-                minute: '2-digit' 
-            };
-            return now.toLocaleDateString('en-US', options);
-        }
-
-        // Function to create a note element
-        function createNoteElement(noteText) {
-            const noteDiv = document.createElement('div');
-            noteDiv.className = 'note-item';
-            
-            const noteContent = document.createElement('p');
-            noteContent.textContent = noteText;
-            
-            const timestamp = document.createElement('div');
-            timestamp.className = 'note-timestamp';
-            timestamp.textContent = formatTimestamp();
-            
-            noteDiv.appendChild(noteContent);
-            noteDiv.appendChild(timestamp);
-            
-            return noteDiv;
-        }
-
-        // Function to update the notes display
-        function updateNotesDisplay() {
-            const notesContainer = document.getElementById('notesContainer');
-            const notes = notesContainer.querySelectorAll('.note-item');
-            
-            // Show or hide empty message
-            const emptyMessage = notesContainer.querySelector('.empty-notes-message');
-            if (notes.length > 0) {
-                if (emptyMessage) {
-                    emptyMessage.style.display = 'none';
-                }
-            } else {
-                if (emptyMessage) {
-                    emptyMessage.style.display = 'block';
-                }
-            }
-        }
-
-        // Add Note Button Event Listener
-        document.getElementById('addNoteBtn').addEventListener('click', function() {
-            const noteInput = document.getElementById('noteInput');
+        // Add Note Button Click Handler
+        addNoteBtn.addEventListener('click', function() {
+            // Get the note text from input
             const noteText = noteInput.value.trim();
             
             // Check if input is empty
             if (noteText === '') {
-                showNotification();
-                return;
+                // Show notification asking user to type a note
+                notification.textContent = 'Please type your note before adding!';
+                notification.classList.add('show');
+                
+                // Hide notification after 3 seconds
+                setTimeout(function() {
+                    notification.classList.remove('show');
+                }, 3000);
+                
+                return; // Exit the function
             }
             
-            // Create new note element
-            const noteElement = createNoteElement(noteText);
-            
-            // Get notes container
-            const notesContainer = document.getElementById('notesContainer');
-            
-            // Remove empty message if it exists
-            const emptyMessage = notesContainer.querySelector('.empty-notes-message');
-            if (emptyMessage) {
-                emptyMessage.remove();
+            // Remove "no notes" message if it exists
+            const noNotesMsg = notesContainer.querySelector('.no-notes');
+            if (noNotesMsg) {
+                noNotesMsg.remove();
             }
             
-            // Add note to the container (prepend to show newest first)
-            notesContainer.insertBefore(noteElement, notesContainer.firstChild);
+            // Create a new note element (div)
+            const noteItem = document.createElement('div');
+            noteItem.className = 'note-item';
             
-            // Clear input field
+            // Create note content paragraph
+            const noteParagraph = document.createElement('p');
+            noteParagraph.textContent = noteText;
+            
+            // Create timestamp
+            const timestamp = document.createElement('div');
+            timestamp.className = 'note-timestamp';
+            const now = new Date();
+            timestamp.textContent = 'Added on: ' + now.toLocaleString();
+            
+            // Append content and timestamp to note item
+            noteItem.appendChild(noteParagraph);
+            noteItem.appendChild(timestamp);
+            
+            // Add the new note to the beginning of notes container
+            notesContainer.insertBefore(noteItem, notesContainer.firstChild);
+            
+            // Clear the input field
             noteInput.value = '';
             
-            // Update display
-            updateNotesDisplay();
-            
-            // Focus back on input for easy note entry
+            // Focus back on input for easy next note entry
             noteInput.focus();
         });
 
-        // Allow Enter key to add note (Ctrl+Enter for new line in textarea)
-        document.getElementById('noteInput').addEventListener('keydown', function(e) {
-            if (e.key === 'Enter' && !e.ctrlKey && !e.shiftKey) {
-                e.preventDefault();
-                document.getElementById('addNoteBtn').click();
+        // Optional: Allow pressing Enter (with Ctrl/Cmd) to add note
+        noteInput.addEventListener('keydown', function(e) {
+            if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+                addNoteBtn.click();
             }
         });
 
-        // Contact Form Functionality 
-        // Contact Form Submission Handler
+        // ========== CONTACT FORM FUNCTIONALITY ==========
+        
         document.getElementById('contactForm').addEventListener('submit', function(e) {
             e.preventDefault(); // Prevent default form submission
             
@@ -878,7 +1037,7 @@
                 return;
             }
             
-            // Simulate form submission (in real application, this would be sent to a server)
+            // Simulate form submission
             console.log('Form Submitted:', {
                 name: name,
                 email: email,
@@ -899,8 +1058,8 @@
             }, 5000);
         });
 
-        // Navigation and scroll animations
-        // Smooth scrolling for navigation links
+        // ========== SMOOTH SCROLLING ==========
+        
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -914,7 +1073,8 @@
             });
         });
 
-        // Add active class to navigation on scroll
+        // ========== NAVIGATION ACTIVE STATE ==========
+        
         window.addEventListener('scroll', function() {
             const sections = document.querySelectorAll('section');
             const navLinks = document.querySelectorAll('nav a');
@@ -923,20 +1083,21 @@
             sections.forEach(section => {
                 const sectionTop = section.offsetTop;
                 const sectionHeight = section.clientHeight;
-                if (pageYOffset >= (sectionTop - 100)) {
+                if (pageYOffset >= (sectionTop - 200)) {
                     current = section.getAttribute('id');
                 }
             });
 
             navLinks.forEach(link => {
-                link.style.opacity = '1';
+                link.style.background = 'transparent';
                 if (link.getAttribute('href').slice(1) === current) {
-                    link.style.opacity = '0.7';
+                    link.style.background = 'rgba(255, 255, 255, 0.1)';
                 }
             });
         });
 
-        // Add animation on scroll for project cards
+        // ========== PROJECT CARDS ANIMATION ==========
+        
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -100px 0px'
@@ -959,21 +1120,148 @@
             observer.observe(card);
         });
 
-        // Form input animations
+        // ========== FORM INPUT ANIMATIONS ==========
+        
         const formInputs = document.querySelectorAll('.form-group input, .form-group textarea');
         formInputs.forEach(input => {
             input.addEventListener('focus', function() {
-                this.parentElement.querySelector('label').style.color = '#1a1a1a';
+                this.parentElement.querySelector('label').style.color = '#ffffff';
             });
             
             input.addEventListener('blur', function() {
-                this.parentElement.querySelector('label').style.color = '#555';
+                this.parentElement.querySelector('label').style.color = '#cccccc';
             });
         });
 
-        // Console welcome message
-        console.log('%c Welcome to my portfolio! ', 'background: #1a1a1a; color: white; font-size: 20px; padding: 10px;');
+        // ========== CONSOLE MESSAGE ==========
+        
+        console.log('%c Welcome to my portfolio! ', 'background: #ffffff; color: #1a1a1a; font-size: 20px; padding: 10px;');
         console.log('Interested in the code? Feel free to reach out!');
+
+        // ========== FIREWORKS CONGRATULATIONS EFFECT ==========
+        
+        window.addEventListener('load', function() {
+            const overlay = document.getElementById('congratsOverlay');
+            const congratsText = document.getElementById('congratsText');
+            
+            // Show overlay
+            overlay.classList.add('active');
+            
+            // Create multiple firework bursts
+            const colors = ['#ff0', '#f0f', '#0ff', '#ff4444', '#44ff44', '#4444ff', '#ffaa00', '#ff00aa'];
+            const burstCount = 15; // Number of firework bursts
+            
+            function createFirework(x, y, delay) {
+                setTimeout(() => {
+                    const particleCount = 30; // Particles per burst
+                    const color = colors[Math.floor(Math.random() * colors.length)];
+                    
+                    for (let i = 0; i < particleCount; i++) {
+                        const particle = document.createElement('div');
+                        particle.className = 'firework';
+                        particle.style.left = x + 'px';
+                        particle.style.top = y + 'px';
+                        particle.style.background = color;
+                        
+                        // Random direction
+                        const angle = (Math.PI * 2 * i) / particleCount;
+                        const velocity = 100 + Math.random() * 100;
+                        const xDist = Math.cos(angle) * velocity;
+                        const yDist = Math.sin(angle) * velocity;
+                        
+                        particle.style.setProperty('--x', xDist + 'px');
+                        particle.style.setProperty('--y', yDist + 'px');
+                        
+                        overlay.appendChild(particle);
+                        
+                        // Remove after animation
+                        setTimeout(() => particle.remove(), 1000);
+                    }
+                    
+                    // Add sparkles
+                    for (let i = 0; i < 10; i++) {
+                        setTimeout(() => {
+                            const sparkle = document.createElement('div');
+                            sparkle.className = 'sparkle';
+                            sparkle.style.left = (x + (Math.random() - 0.5) * 200) + 'px';
+                            sparkle.style.top = (y + (Math.random() - 0.5) * 200) + 'px';
+                            overlay.appendChild(sparkle);
+                            
+                            setTimeout(() => sparkle.remove(), 1500);
+                        }, i * 100);
+                    }
+                }, delay);
+            }
+            
+            // Create random fireworks across the screen
+            for (let i = 0; i < burstCount; i++) {
+                const x = Math.random() * window.innerWidth;
+                const y = Math.random() * window.innerHeight;
+                const delay = Math.random() * 3000; // Random timing within 3 seconds
+                
+                createFirework(x, y, delay);
+            }
+            
+            // Hide overlay after 5 seconds
+            setTimeout(() => {
+                overlay.classList.remove('active');
+            }, 5000);
+        });
+
+        // ========== CHEEMS BONK ANIMATION ==========
+        
+        const animatedBtn = document.getElementById('animatedBtn');
+        const bonkContainer = document.getElementById('bonkContainer');
+        
+        let bonkTimeout;
+        
+        // Play bonk sound effect (using Web Audio API)
+        function playBonkSound() {
+            const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            const oscillator = audioContext.createOscillator();
+            const gainNode = audioContext.createGain();
+            
+            oscillator.connect(gainNode);
+            gainNode.connect(audioContext.destination);
+            
+            oscillator.frequency.value = 200;
+            oscillator.type = 'sine';
+            
+            gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+            gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.1);
+            
+            oscillator.start(audioContext.currentTime);
+            oscillator.stop(audioContext.currentTime + 0.1);
+        }
+        
+        function resetBonk() {
+            bonkContainer.classList.remove('bonking');
+        }
+        
+        animatedBtn.addEventListener('click', function() {
+            // Clear any existing timeout
+            if (bonkTimeout) {
+                clearTimeout(bonkTimeout);
+            }
+            
+            // Reset to first image first (in case it's already showing second)
+            bonkContainer.classList.remove('bonking');
+            
+            // Small delay, then trigger bonk (transition to second image)
+            setTimeout(() => {
+                bonkContainer.classList.add('bonking');
+                
+                // Play sound at moment of impact
+                try {
+                    playBonkSound();
+                } catch (e) {
+                    console.log('Sound not available');
+                }
+            }, 50);
+            
+            // Reset back to first image after 1.5 seconds
+            bonkTimeout = setTimeout(resetBonk, 1500);
+        });
     </script>
 </body>
 </html>
